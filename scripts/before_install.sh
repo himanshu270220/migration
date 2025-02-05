@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# Output the current step
 echo "Running BeforeInstall script..."
 
 # Stop the currently running application if it exists
@@ -19,5 +18,9 @@ fi
 # Ensure the directory exists after cleanup
 echo "Creating fresh application directory..."
 mkdir -p "$APP_DIR"
+
+# Copy application files to the destination directory
+echo "Copying application files..."
+cp -r /home/aadhvik-27_02/migration/* /home/ubuntu/migration/
 
 echo "BeforeInstall script completed."
