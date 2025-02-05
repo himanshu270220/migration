@@ -15,7 +15,7 @@ node -v
 npm -v
 
 echo "Installing application dependencies..."
-cd /home/ubuntu/nodejs-app || exit
+cd /home/ubuntu/migration || exit
 npm install || { echo "npm install failed"; exit 1; }
 
 echo "install_dependencies script completed."

@@ -8,7 +8,7 @@ echo "Stopping any running application..."
 pm2 stop all || true
 
 # Clean up existing application directory
-APP_DIR="/home/ubuntu/nodejs-app"
+APP_DIR="/home/ubuntu/migration"
 if [ -d "$APP_DIR" ]; then
     echo "Removing existing application directory..."
     rm -rf "$APP_DIR"

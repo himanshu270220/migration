@@ -16,6 +16,6 @@ export PATH=$PATH:$(npm bin -g)
 pm2 stop all || true
 
 # Start the application from the correct path
-pm2 start /home/ubuntu/nodejs-app/app.js --name nodejs-app
+pm2 start /home/ubuntu/migration/app.js --name nodejs-app
 
 echo "Application started successfully."
