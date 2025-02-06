@@ -3,28 +3,36 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      nodejs: 18 # Specify the version of Node.js
+      nodejs: 18 # Ensure Node.js 18 is available during the build
     commands:
-      - echo Installing dependencies...
-      - npm install
+      - echo Installing necessary dependencies for build...
+      - sudo apt-get update
+      - sudo apt-get install -y curl zip unzip
+
+  pre_build:
+    commands:
+      - echo Running BeforeInstall script...
+      - chmod +x scripts/before_install.sh
+      - ./scripts/before_install.sh
 
   build:
     commands:
-      - echo Building the application...
-      # No actual build step required for a simple Node.js app
-      - echo Build phase completed.
+      - echo Running Install Dependencies script...
+      - chmod +x scripts/install_dependencies.sh
+      - ./scripts/install_dependencies.sh
 
   post_build:
     commands:
-      - echo Zipping files for deployment...
-      - zip -r app.zip . # Package all files for CodeDeploy
-      - echo Build and package phase completed.
+      - echo Packaging application files for deployment...
+      - zip -r app.zip . # Package all files
+      - echo Build and packaging complete.
 
 artifacts:
   files:
     - app.zip
-  discard-paths: yes # Keep only the zip file structure
+  discard-paths: yes # Keep only the zip structure
 
 cache:
   paths:
     - node_modules/**/*
+
