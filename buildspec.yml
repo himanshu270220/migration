@@ -1,0 +1,30 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 18 # Specify the version of Node.js
+    commands:
+      - echo Installing dependencies...
+      - npm install
+
+  build:
+    commands:
+      - echo Building the application...
+      # No actual build step required for a simple Node.js app
+      - echo Build phase completed.
+
+  post_build:
+    commands:
+      - echo Zipping files for deployment...
+      - zip -r app.zip . # Package all files for CodeDeploy
+      - echo Build and package phase completed.
+
+artifacts:
+  files:
+    - app.zip
+  discard-paths: yes # Keep only the zip file structure
+
+cache:
+  paths:
+    - node_modules/**/*
